@@ -57,7 +57,6 @@ body{font-family:Nunito,sans-serif;background:#f5f6fa;min-height:100vh}
 .dd{font-size:.62rem;color:#666;margin-bottom:3px;line-height:1.2}
 .dwa{width:26px;height:26px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer}
 .dwa svg{width:14px;height:14px;fill:#fff}
-.av{margin:4px 16px 10px;background:#fff8e1;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;border:1.5px solid #ffe082;font-size:.75rem}
 .ov{display:none;position:fixed;inset:0;z-index:150;background:#f5f6fa;overflow-y:auto;padding-bottom:80px}
 .ov.on{display:block;animation:fu .3s ease}
 .ov-ban{padding:14px 16px;color:#fff;display:flex;align-items:center;gap:10px}
@@ -176,7 +175,7 @@ body{font-family:Nunito,sans-serif;background:#f5f6fa;min-height:100vh}
     <div class="ds" id="dest"></div>
     <button class="da r" onclick="document.getElementById('dest').scrollBy(200,0)" aria-label="Siguiente">›</button>
   </div>
-  <div class="av"><span style="font-size:1.3rem">🛵</span><div><div style="font-size:.75rem;font-weight:800;color:#f57f17">Realizamos envíos vía Yango Moto</div><div style="font-size:.68rem;color:#888;font-weight:600;margin-top:2px">Los precios mostrados no incluyen el costo de envío</div></div></div>
+  <div class="hero"><img src="https://i.ibb.co/VcJhfQ0w/Yango-Moto.jpg" alt="Envíos vía Yango Moto" style="border-radius:12px"></div>
 </div>
 
 <!-- PRODUCTOS -->
@@ -277,265 +276,257 @@ body{font-family:Nunito,sans-serif;background:#f5f6fa;min-height:100vh}
   <div class="ni on" id="ni-inicio" onclick="showPg('inicio')"><div class="ni-ico">🏠</div><div class="ni-lbl">Inicio</div></div>
   <div class="ni" id="ni-buscar" onclick="showPg('inicio');setTimeout(function(){document.getElementById('srch-inp').focus();},300)"><div class="ni-ico">🔍</div><div class="ni-lbl">Buscar</div></div>
   <div class="ni" id="ni-contacto" onclick="showPg('contacto')"><div class="ni-ico">📞</div><div class="ni-lbl">Contacto</div></div>
-</div>
-
-<script>
+</div><script>
 // ==========================================
 // CONFIGURACIÓN
 // ==========================================
-var WA = '59170000000'; // ⚠️ CAMBIAR POR NÚMERO REAL
+var WA = '59170000000';
 var WASVG = '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/></svg>';
 
 var CATS_INFO = {
-  pulgas:     {lbl:'Pulgas y Garrapatas',   desc:'Antiparasitarios externos',     bg:'linear-gradient(135deg,#1b5e20,#388e3c)', em:'🛡️'},
-  parasitos:  {lbl:'Desparasitación',    desc:'Desparasitantes internos',        bg:'linear-gradient(135deg,#bf360c,#e64a19)', em:'🐍'},
-  vitaminas:  {lbl:'Vitaminas',desc:'Energía y bienestar',          bg:'linear-gradient(135deg,#0d47a1,#1976d2)', em:'⚡'},
-  antibiotico:{lbl:'Antibióticos',          desc:'Tratamiento de infecciones',    bg:'linear-gradient(135deg,#b71c1c,#e53935)', em:'💊'},
-  tratamiento:{lbl:'Otros Tratamientos', desc:'Tratamientos varios', bg:'linear-gradient(135deg,#e65100,#ff9800)', em:'💉'},
-  respiratorio:{lbl:'Respiratorio',   desc:'Expectorantes',                 bg:'linear-gradient(135deg,#006064,#0097a7)', em:'😮‍💨'},
-  digestivo:  {lbl:'Digestión e Hígado',  desc:'Salud digestiva y hepática',    bg:'linear-gradient(135deg,#7b1fa2,#4a148c)', em:'🤢'},
-  hongos:     {lbl:'Hongos y Piel',         desc:'Antimicóticos',                 bg:'linear-gradient(135deg,#4e342e,#795548)', em:'🍄'},
-  leche:      {lbl:'Leche para Cachorros',        desc:'Para cachorros huérfanos',      bg:'linear-gradient(135deg,#880e4f,#c2185b)', em:'🍼'},
-  shampoo:    {lbl:'Higiene y Shampoo',     desc:'Cuidado externo',               bg:'linear-gradient(135deg,#004d40,#00796b)', em:'🛁'},
-  arena_higiene:{lbl:'Arena Sanitaria',     desc:'Arena aglutinante y perfumada',     bg:'linear-gradient(135deg,#006064,#0097a7)', em:'🚽'},
-  alimentos:  {lbl:'Alimentos',              desc:'Nutrición y alimentación',       bg:'linear-gradient(135deg,#e65100,#ff6d00)', em:'🍗'},
-  accesorios: {lbl:'Accesorios y Juguetes',  desc:'Entretenimiento y cuidado',      bg:'linear-gradient(135deg,#6a1b9a,#9c27b0)', em:'🧸'},
-  raticidas:  {lbl:'Raticidas',             desc:'Control de roedores',           bg:'linear-gradient(135deg,#424242,#757575)', em:'🐀'},
-  insecticidas:{lbl:'Insecticidas',         desc:'Control de insectos',           bg:'linear-gradient(135deg,#795548,#4e342e)', em:'🪳'},
-  desinfeccion:{lbl:'Desinfección',         desc:'Limpieza y sanitización',       bg:'linear-gradient(135deg,#00796b,#004d40)', em:'🧴'},
-  urinario:   {lbl:'Urinario',             desc:'Salud del tracto urinario',      bg:'linear-gradient(135deg,#0277bd,#01579b)', em:'🚽'}
+  pulgas:{lbl:'Pulgas y Garrapatas',desc:'Antiparasitarios externos',bg:'linear-gradient(135deg,#1b5e20,#388e3c)',em:'🛡️'},
+  parasitos:{lbl:'Desparasitación',desc:'Desparasitantes internos',bg:'linear-gradient(135deg,#bf360c,#e64a19)',em:'🐍'},
+  vitaminas:{lbl:'Vitaminas',desc:'Energía y bienestar',bg:'linear-gradient(135deg,#0d47a1,#1976d2)',em:'⚡'},
+  antibiotico:{lbl:'Antibióticos',desc:'Tratamiento de infecciones',bg:'linear-gradient(135deg,#b71c1c,#e53935)',em:'💊'},
+  tratamiento:{lbl:'Otros Tratamientos',desc:'Tratamientos varios',bg:'linear-gradient(135deg,#e65100,#ff9800)',em:'💉'},
+  respiratorio:{lbl:'Respiratorio',desc:'Expectorantes',bg:'linear-gradient(135deg,#006064,#0097a7)',em:'😮‍💨'},
+  digestivo:{lbl:'Digestión e Hígado',desc:'Salud digestiva y hepática',bg:'linear-gradient(135deg,#7b1fa2,#4a148c)',em:'🤢'},
+  hongos:{lbl:'Hongos y Piel',desc:'Antimicóticos',bg:'linear-gradient(135deg,#4e342e,#795548)',em:'🍄'},
+  leche:{lbl:'Leche para Cachorros',desc:'Para cachorros huérfanos',bg:'linear-gradient(135deg,#880e4f,#c2185b)',em:'🍼'},
+  shampoo:{lbl:'Higiene y Shampoo',desc:'Cuidado externo',bg:'linear-gradient(135deg,#004d40,#00796b)',em:'🛁'},
+  arena_higiene:{lbl:'Arena Sanitaria',desc:'Arena aglutinante y perfumada',bg:'linear-gradient(135deg,#006064,#0097a7)',em:'🚽'},
+  alimentos:{lbl:'Alimentos',desc:'Nutrición y alimentación',bg:'linear-gradient(135deg,#e65100,#ff6d00)',em:'🍗'},
+  accesorios:{lbl:'Accesorios y Juguetes',desc:'Entretenimiento y cuidado',bg:'linear-gradient(135deg,#6a1b9a,#9c27b0)',em:'🧸'},
+  raticidas:{lbl:'Raticidas',desc:'Control de roedores',bg:'linear-gradient(135deg,#424242,#757575)',em:'🐀'},
+  insecticidas:{lbl:'Insecticidas',desc:'Control de insectos',bg:'linear-gradient(135deg,#795548,#4e342e)',em:'🪳'},
+  desinfeccion:{lbl:'Desinfección',desc:'Limpieza y sanitización',bg:'linear-gradient(135deg,#00796b,#004d40)',em:'🧴'},
+  urinario:{lbl:'Urinario',desc:'Salud del tracto urinario',bg:'linear-gradient(135deg,#0277bd,#01579b)',em:'🚽'}
 };
 
 var ANIMAL_INFO = {
-  perro: {n:'Perro', em:'🐶', bg:'linear-gradient(135deg,#ff9800,#f57c00)',
+  perro:{n:'Perro',em:'🐶',bg:'linear-gradient(135deg,#ff9800,#f57c00)',
     cats:['pulgas','parasitos','alimentos','vitaminas','shampoo','accesorios','antibiotico','tratamiento','respiratorio','digestivo','hongos','leche'],
     emojis:{pulgas:'🛡️'}},
-  gato:  {n:'Gato',  em:'🐱', bg:'linear-gradient(135deg,#9c27b0,#7b1fa2)',
+  gato:{n:'Gato',em:'🐱',bg:'linear-gradient(135deg,#9c27b0,#7b1fa2)',
     cats:['pulgas','parasitos','alimentos','vitaminas','urinario','shampoo','arena_higiene','accesorios','antibiotico','tratamiento','digestivo','respiratorio','hongos','leche'],
     emojis:{pulgas:'🐱'}},
-  rural: {n:'Animales de Granja', em:'🐄', bg:'linear-gradient(135deg,#2e7d32,#1b5e20)',
+  rural:{n:'Animales de Granja',em:'🐄',bg:'linear-gradient(135deg,#2e7d32,#1b5e20)',
     cats:['parasitos','antibiotico','tratamiento','vitaminas','respiratorio','digestivo','desinfeccion'],
     emojis:{}},
-  aves:  {n:'Aves',  em:'🐔', bg:'linear-gradient(135deg,#e53935,#b71c1c)',
+  aves:{n:'Aves',em:'🐔',bg:'linear-gradient(135deg,#e53935,#b71c1c)',
     cats:['parasitos','antibiotico','tratamiento','vitaminas','respiratorio','desinfeccion','alimentos'],
     emojis:{}}
 };
 
 var P=[
-  // ==========================================
   // PULGAS - Tabletas Perro
-  // ==========================================
-  {id:"afoxocan_25_50",n:"Afoxocan 25-50 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/67kwMFrw/AFOXOCAN-25-50-KG.png"},
-  {id:"afoxopet_2_4",n:"Afoxopet 2-4 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/BH1Z1MRv/AFOXOPET-2-4-KG.png"},
-  {id:"afoxopet_4_10",n:"Afoxopet 4-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Z1MZpjKt/AFOXOPET-4-10-KG.png"},
-  {id:"afoxopet_10_25",n:"Afoxopet 10-25 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/gLfgM0XS/AFOXOPET-10-25-KG.png"},
-  {id:"bravecto_4_10",n:"Bravecto 4.5-10 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/FkrPKgpy/BRAVECTO-4-5-10-KG.png"},
-  {id:"bravecto_10_20",n:"Bravecto 10-20 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/4RRZ33kZ/BRAVECTO-10-20-KG.png"},
-  {id:"bravecto_t_5_10",n:"Bravecto Triple 5-10 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/JFWSvmyV/BRAVECTO-TRIPLE-5-10-KG.png"},
-  {id:"bravecto_t_10_20",n:"Bravecto Triple 10-20 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/d43sdyrX/BRAVECTO-TRIPLE-10-20-KG.png"},
-  {id:"nexgard_2_4",n:"NexGard 2-4 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/3ybN8rYm/NEXGARD-2-4-KG.png"},
-  {id:"nexgard_4_10",n:"NexGard 4-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/ksGkzXs8/NEXGARD-4-10-KG.png"},
-  {id:"nexgard_10_25",n:"NexGard 10-25 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/TqKDD9hJ/NEXGARD-10-25-KG.png"},
-  {id:"nexgard_25_50",n:"NexGard 25-50 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/B5b1Mzmp/NEXGARD-25-50-KG.png"},
-  {id:"nexgard_s_3_6_7_5",n:"NexGard Spectra 3.6-7.5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/DgztkdK7/NEXGARD-SPECTRA-3-6-7-5-KG.png"},
-  {id:"nexgard_s_7_6_15",n:"NexGard Spectra 7.6-15 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/GwTvNLV/NEXGARD-SPECTRA-7-6-15-KG.png"},
-  {id:"nexgard_s_15_30",n:"NexGard Spectra 15-30 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/209PdJTB/NEXGARD-SPECTRA-15-30-KG.png"},
-  {id:"nexgard_s_30_60",n:"NexGard Spectra 30-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/tTFQc0mS/NEXGARD-SPECTRA-30-60-KG.png"},
-  {id:"simparica_2_5",n:"Simparica 2.5-5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/d0y5pY1p/SIMPARICA-2-5-5-KG.png"},
-  {id:"simparica_5_10",n:"Simparica 5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/7dzbMS0n/SIMPARICA-5-10-KG.png"},
-  {id:"simparica_10_20",n:"Simparica 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/LXLnn8NB/SIMPARICA-10-20-KG.png"},
-  {id:"simparica_20_40",n:"Simparica 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/NdRd1fJY/SIMPARICA-20-40-KG.png"},
-  {id:"simparica_40_60",n:"Simparica 40-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/LD2QF7tg/SIMPARICA-40-60-KG.png"},
-  {id:"simparica_t_2_5",n:"Simparica Trio 2.5-5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/8LhYg0WD/SIMPARICA-TRIO-2-5-5-KG.png"},
-  {id:"simparica_t_5_10",n:"Simparica Trio 5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/N6JKhCVr/SIMPARICA-TRIO-5-10-KG.png"},
-  {id:"simparica_t_10_20",n:"Simparica Trio 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/cXVhBjGb/SIMPARICA-TRIO-10-20-KG.png"},
-  {id:"simparica_t_20_40",n:"Simparica Trio 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/35VQBBc7/SIMPARICA-TRIO-20-40-KG.png"},
-  {id:"simparica_t_40_60",n:"Simparica Trio 40-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/jFrJrqg/SIMPARICA-TRIO-40-60.png"},
-  {id:"atrevia_2_4",n:"Atrevia One 2-4.5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/DDn9Nphp/ATREVIA-2-4-5-KG.png"},
-  {id:"atrevia_4_10",n:"Atrevia One 4.5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Z7TNWHZ/ATREVIA-4-5-10-KG.png"},
-  {id:"atrevia_10_20",n:"Atrevia One 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/40zx3j2/ATREVIA-10-20-KG.png"},
-  {id:"atrevia_20_40",n:"Atrevia One 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/S40wzFWK/ATREVIA-20-40-KG.png"},
-  {id:"atrevia_xr",n:"Atrevia One XR 20-40 kg",d:"1 tableta = 3 meses protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/JjvJ8PBk/ATREVIA-XR-20-40.png"},
+  {id:"afoxocan_25_50",n:"Afoxocan 25-50 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/gFh93xqS/AFOXOCAN-25-50-KG.jpg"},
+  {id:"afoxopet_2_4",n:"Afoxopet 2-4 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/LhRqjxQd/AFOXOPET-2-4-KG.jpg"},
+  {id:"afoxopet_4_10",n:"Afoxopet 4-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/ynYKNG2Q/AFOXOPET-4-10-KG.jpg"},
+  {id:"afoxopet_10_25",n:"Afoxopet 10-25 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/4n10tRkk/AFOXOPET-10-25-KG.jpg"},
+  {id:"bravecto_4_10",n:"Bravecto 4.5-10 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/v6fvtR0B/BRAVECTO-4-5-10-KG.jpg"},
+  {id:"bravecto_10_20",n:"Bravecto 10-20 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/N6H0yxJN/BRAVECTO-10-20-KG.jpg"},
+  {id:"bravecto_t_5_10",n:"Bravecto Triple 5-10 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Lzd4KytS/BRAVECTO-TRIPLE-5-10-KG.jpg"},
+  {id:"bravecto_t_10_20",n:"Bravecto Triple 10-20 kg",d:"1 tableta = 37 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/nMpbJYwZ/BRAVECTO-TRIPLE-10-20-KG.jpg"},
+  {id:"nexgard_2_4",n:"NexGard 2-4 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/7x2bBqgR/NEXGARD-2-4-KG.jpg"},
+  {id:"nexgard_4_10",n:"NexGard 4-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/VY941YRH/NEXGARD-4-10-KG.jpg"},
+  {id:"nexgard_10_25",n:"NexGard 10-25 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/FLtntjz9/NEXGARD-10-25-KG.jpg"},
+  {id:"nexgard_25_50",n:"NexGard 25-50 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/BV71dWGf/NEXGARD-25-50-KG.jpg"},
+  {id:"nexgard_s_3_6_7_5",n:"NexGard Spectra 3.6-7.5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/6JZVMqgb/NEXGARD-SPECTRA-3-6-7-5-KG.jpg"},
+  {id:"nexgard_s_7_6_15",n:"NexGard Spectra 7.6-15 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/h1ncXGY1/NEXGARD-SPECTRA-7-6-15-KG.jpg"},
+  {id:"nexgard_s_15_30",n:"NexGard Spectra 15-30 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/NgcVVH23/NEXGARD-SPECTRA-15-30-KG.jpg"},
+  {id:"nexgard_s_30_60",n:"NexGard Spectra 30-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/gM58MNLK/NEXGARD-SPECTRA-30-60-KG.jpg"},
+  {id:"simparica_2_5",n:"Simparica 2.5-5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/tpLhhZrH/SIMPARICA-2-5-5-KG.jpg"},
+  {id:"simparica_5_10",n:"Simparica 5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/212dHL4z/SIMPARICA-5-10-KG.jpg"},
+  {id:"simparica_10_20",n:"Simparica 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/mVVCk3vY/SIMPARICA-10-20-KG.jpg"},
+  {id:"simparica_20_40",n:"Simparica 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/8nYC1Cy0/SIMPARICA-20-40-KG.jpg"},
+  {id:"simparica_40_60",n:"Simparica 40-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/7tVtCDz5/SIMPARICA-40-60-KG.jpg"},
+  {id:"simparica_t_2_5",n:"Simparica Trio 2.5-5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/gMtLL8Hd/SIMPARICA-TRIO-2-5-5-KG.jpg"},
+  {id:"simparica_t_5_10",n:"Simparica Trio 5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/My5RPx7d/SIMPARICA-TRIO-5-10-KG.jpg"},
+  {id:"simparica_t_10_20",n:"Simparica Trio 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/JRcsMxFX/SIMPARICA-TRIO-10-20-KG.jpg"},
+  {id:"simparica_t_20_40",n:"Simparica Trio 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/B2C9Hg2Y/SIMPARICA-TRIO-20-40-KG.jpg"},
+  {id:"simparica_t_40_60",n:"Simparica Trio 40-60 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Y48C6Q0W/SIMPARICA-TRIO-40-60.jpg"},
+  {id:"atrevia_2_4",n:"Atrevia One 2-4.5 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/NdS9XmdC/ATREVIA-2-4-5-KG.jpg"},
+  {id:"atrevia_4_10",n:"Atrevia One 4.5-10 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/gZ8L3NmK/ATREVIA-4-5-10-KG.jpg"},
+  {id:"atrevia_10_20",n:"Atrevia One 10-20 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/rRdjFBCF/ATREVIA-10-20-KG.jpg"},
+  {id:"atrevia_20_40",n:"Atrevia One 20-40 kg",d:"1 tableta = 30 días protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/G4zh95Mq/ATREVIA-20-40-KG.jpg"},
+  {id:"atrevia_xr",n:"Atrevia One XR 20-40 kg",d:"1 tableta = 3 meses protegido",c:"pulgas",sc:"tabletas",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/TxD4z4KS/ATREVIA-XR-20-40.jpg"},
   // PULGAS - Tabletas Gato
-  {id:"cidar_gato_1_5_3",n:"Cidar Gato 1,5-3 kg",d:"1 tableta = 60 días protegido",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/x8YqZhNq/CIDAR-GATO-1-5-3-kg.png"},
-  {id:"cidar_gato_3_6",n:"Cidar Gato 3-6 kg",d:"1 tableta = 60 días protegido",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/q3BS72VT/CIDAR-GATO-3-1-6-kg.png"},
-  {id:"power_gato_2_3",n:"POWER Gato 2-3 kg / Perro 2,5-5 kg",d:"Elimina pulgas — 30 días",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/PvxHgFr5/POWER-GATO-2-3-kg-PERRO-2-5-5-KG.png"},
-  {id:"power_gato_3_6",n:"POWER Gato 3-6 kg / Perro 5-10 kg",d:"Elimina pulgas — 30 días",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/v6ty38NF/POWER-GATO-3-6-kg-PERRO-5-10-kg.png"},
+  {id:"cidar_gato_1_5_3",n:"Cidar Gato 1,5-3 kg",d:"1 tableta = 60 días protegido",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/4ZVjm8dC/CIDAR-GATO-1-5-3-kg.jpg"},
+  {id:"cidar_gato_3_6",n:"Cidar Gato 3-6 kg",d:"1 tableta = 60 días protegido",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/WQ2fNnT/CIDAR-GATO-3-1-6-kg.jpg"},
+  {id:"power_gato_2_3",n:"POWER Gato 2-3 kg / Perro 2,5-5 kg",d:"Elimina pulgas — 30 días",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/FbFFTmJL/POWER-GATO-2-3-kg-PERRO-2-5-5-KG.jpg"},
+  {id:"power_gato_3_6",n:"POWER Gato 3-6 kg / Perro 5-10 kg",d:"Elimina pulgas — 30 días",c:"pulgas",sc:"tabletas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/jPsdkmGq/POWER-GATO-3-6-kg-PERRO-5-10-kg.jpg"},
   // PULGAS - Collares
-  {id:"ecthol_collar",n:"Ecthol Collar",d:"Collar Antipulgas — 10 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/8gKC5gYP/ECTHOL-COLLAR.png"},
-  {id:"tea_collar_cach",n:"Tea Collar Cachorros",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/hFCPHQh9/COLLAR-TEA-PERROS-CACHORROS.png"},
-  {id:"tea_collar_chico",n:"Tea Collar Medianos",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/RpRJCTcs/COLLAR-TEA-PERROS-CHICOS-Y-MEDIANOS.png"},
-  {id:"tea_collar_gato",n:"Tea Collar Gato",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/XfZYd3nX/COLLAR-TEA-GATO.png"},
-  {id:"repexxin_collar_4_25",n:"Repexxin Collar 4-25 kg",d:"Collar Antipulgas — 6 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/nNTBK52r/REPEXXIN-COLLAR-4-25-kg.png"},
-  {id:"repexxin_collar_25_50",n:"Repexxin Collar 25-50 kg",d:"Collar Antipulgas — 6 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Nn3HczVs/REPEXXIN-COLLAR-25-50-kg.png"},
+  {id:"ecthol_collar",n:"Ecthol Collar",d:"Collar Antipulgas — 10 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/wVVdzQH/ECTHOL-COLLAR.jpg"},
+  {id:"tea_collar_cach",n:"Tea Collar Cachorros",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/ymJJ1NnM/COLLAR-TEA-PERROS-CACHORROS.jpg"},
+  {id:"tea_collar_chico",n:"Tea Collar Medianos",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/C5jXd2Rz/COLLAR-TEA-PERROS-CHICOS-Y-MEDIANOS.jpg"},
+  {id:"tea_collar_gato",n:"Tea Collar Gato",d:"Collar Antipulgas — 5 meses protegido",c:"pulgas",sc:"collares",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/N6fxqpr4/COLLAR-TEA-GATO.jpg"},
+  {id:"repexxin_collar_4_25",n:"Repexxin Collar 4-25 kg",d:"Collar Antipulgas — 6 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Lq3cL2b/REPEXXIN-COLLAR-4-25-kg.jpg"},
+  {id:"repexxin_collar_25_50",n:"Repexxin Collar 25-50 kg",d:"Collar Antipulgas — 6 meses protegido",c:"pulgas",sc:"collares",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/pB0GDr0n/REPEXXIN-COLLAR-25-50-kg.jpg"},
   // PULGAS - Pipetas
-  {id:"la_pipeta_4",n:"La Pipeta Osspret 4 kg",d:"Pipeta Antipulgas",c:"pulgas",sc:"pipetas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/ZRctmrTx/LA-PIPETA-OSSPRET-4-KG.png"},
-  {id:"la_pipeta_4_8",n:"La Pipeta Osspret 4-8 kg",d:"Pipeta Antipulgas",c:"pulgas",sc:"pipetas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/rKBkJ6tJ/LA-PIPETA-OSSPRET-4-8-KG.png"},
+  {id:"la_pipeta_4",n:"La Pipeta Osspret 4 kg",d:"Pipeta Antipulgas",c:"pulgas",sc:"pipetas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/PG8NTh87/LA-PIPETA-OSSPRET-4-KG.jpg"},
+  {id:"la_pipeta_4_8",n:"La Pipeta Osspret 4-8 kg",d:"Pipeta Antipulgas",c:"pulgas",sc:"pipetas",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/pj8bmZSM/LA-PIPETA-OSSPRET-4-8-KG.jpg"},
   // PULGAS - Spray
-  {id:"rapid_spray",n:"Rapid Spray",d:"Spray Antipulgas y Antigarrapatas",c:"pulgas",sc:"spray",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/XdvDcfZ/RAPID-SPRAY.png"},
+  {id:"rapid_spray",n:"Rapid Spray 180 ml",d:"Spray Antipulgas y Antigarrapatas",c:"pulgas",sc:"spray",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/ycxGCNn3/RAPID-SPRAY.jpg"},
 
-  // ==========================================
   // PARASITOS - Interna
-  // ==========================================
-  {id:"albexnort",n:"Albexnort Plus-Oral Biofarma",d:"Desparasitante Interno Oral",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/0pBX9GW2/ALBEXNORT-PLUS-ORAL-BIOFARMA.png"},
-  {id:"levocan",n:"Levocan Gotas Ifavet",d:"Antiparasitario en gotas",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/993fjG9z/LEVOCAN-IFAVET.png"},
-  {id:"levofarma",n:"Levofarma Biofarma",d:"Antiparasitario en gotas",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/dstgfDBv/LEVOFARMA-BIOFARMA.png"},
-  {id:"piraquantel",n:"Piraquantel Galmedic",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/S7JqgkrS/PIRAQUANTEL-GALMEDIC.png"},
-  {id:"total_full_gatos",n:"Total Full Gatos",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/vCSpwdQ0/TOTAL-FULL-GATO.png"},
-  {id:"total_full_perros",n:"Total Full Perros",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/wrNk2Q82/TOTAL-FULL-PERRO.png"},
-  {id:"teniax",n:"Teniax Aves Labeet",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/rRp92RS2/TENIAX.png"},
-  {id:"vermic_total",n:"Vermic Total Micropets",d:"Antiparasitario interno en tabletas",c:"parasitos",sc:"interna",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/nqS02bnL/VERMIC-TOTAL-MICROPETS.png"},
+  {id:"albexnort",n:"Albexnort Plus-Oral Biofarma 15 ml",d:"Desparasitante Interno Oral",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/WWHkg1Zk/ALBEXNORT-PLUS-ORAL-BIOFARMA.jpg"},
+  {id:"levocan",n:"Levocan Gotas Ifavet 15 ml",d:"Antiparasitario en gotas",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/kV4R4qqH/LEVOCAN-IFAVET.jpg"},
+  {id:"levofarma",n:"Levofarma Biofarma 15 ml",d:"Antiparasitario en gotas",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/TBb3cPXL/LEVOFARMA-BIOFARMA.jpg"},
+  {id:"piraquantel",n:"Piraquantel Galmedic 20 ml",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/fG0Mqw3F/PIRAQUANTEL-GALMEDIC.jpg"},
+  {id:"total_full_gatos",n:"Total Full Gatos 15 ml",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/FkZKhRbp/TOTAL-FULL-GATO.jpg"},
+  {id:"total_full_perros",n:"Total Full Perros 15 ml",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/ynzpf5qT/TOTAL-FULL-PERRO.jpg"},
+  {id:"teniax",n:"Teniax Aves Labeet 30 ml",d:"Antiparasitario Interno Oral",c:"parasitos",sc:"interna",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/LXBX46hQ/TENIAX.jpg"},
+  {id:"vermic_total",n:"Vermic Total Micropets",d:"Antiparasitario interno en tabletas",c:"parasitos",sc:"interna",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/m5DrFR1s/VERMIC-TOTAL-MICROPETS.jpg"},
   // PARASITOS - Externa (solo Rural)
-  {id:"biotraz",n:"Biotraz Biofarma",d:"Desparacitación Externa",c:"parasitos",sc:"externa",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/gZhq6Jc8/BIOTRAZ-BIOFARMA.png"},
-  {id:"ciperfarma",n:"Ciperfarma pulverización Biofarma",d:"Desparacitación Externa por aspersión o baño",c:"parasitos",sc:"externa",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/RpxjFZXL/CIPERFARMA-PULVERIZACION-BIOFARMA.png"},
+  {id:"biotraz",n:"Biotraz Biofarma 20 ml",d:"Desparacitación Externa",c:"parasitos",sc:"externa",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/0ytYDBTm/BIOTRAZ-BIOFARMA.jpg"},
+  {id:"ciperfarma",n:"Ciperfarma pulverización Biofarma 20 ml",d:"Desparacitación Externa por aspersión o baño",c:"parasitos",sc:"externa",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/V0gmmhR1/CIPERFARMA-PULVERIZACION-BIOFARMA.jpg"},
 
-  // ==========================================
   // VITAMINAS - Energía
-  // ==========================================
-  {id:"aminort",n:"Aminort Saborizada Biofarma",d:"Suplemento Vitaminico Reconstituyente",c:"vitaminas",sc:"energia",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/KxgXXz2z/AMINORT-SABORIZADA-BIOFARMA.png"},
-  {id:"apetitol",n:"Apetitol Biofarma",d:"Suplemento Vitaminico Oral",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/RkzvGCjD/APETITOL-BIOFARMA.png"},
-  {id:"bio_complex",n:"Bio-Complex B Biofarma",d:"Suplemento Vitaminico Oral",c:"vitaminas",sc:"energia",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/4ZYjdjjW/BIO-COMPLEX-B-BIOFARMA.png"},
-  {id:"complejo_b",n:"Complejo B Potenciado Ifavet",d:"Jarabe Multivitaminico Antineuritico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/1JrpcMTW/COMPLEJO-B-POTENCIADO-IFAVET-02.png"},
-  {id:"complejo_b_e",n:"Complejo B electrolitos Biomont",d:"Sobre en polvo, energetico, vitaminico y mineral",c:"vitaminas",sc:"energia",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/prNf7nHK/COMPLEJO-B-ELECTROLITOS.png"},
-  {id:"mascota_tab",n:"Mascota tabletas",d:"Vitaminas y minerales",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/35qxJZpL/MASCOTA-TABLETA-02.png"},
-  {id:"ferron_forte",n:"Ferron Forte-B12",d:"Jarabe Vitaminado",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/V0VVY1DD/FERRON-FORTE-B12-JARABE-MI-MASCOTA.png"},
-  {id:"vitacan_c",n:"Vitacan Compuesto Ifavet",d:"Tableta Suplemento Vitaminico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gbtVmCjv/VITACAN-COMPUESTO-COMPRIMIDOS-IFAVET.png"},
-  {id:"vitacan_j",n:"Vitacan Jarabe Ifavet",d:"Jarabe Suplemento Vitaminico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gLT0Wtf4/VITACAN-JARABE-IFAVET.png"},
+  {id:"aminort",n:"Aminort Saborizada Biofarma 50 ml",d:"Suplemento Vitaminico Reconstituyente",c:"vitaminas",sc:"energia",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/tMdHYRJb/AMINORT-SABORIZADA-BIOFARMA.jpg"},
+  {id:"apetitol",n:"Apetitol Biofarma 15 ml",d:"Suplemento Vitaminico Oral",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/jvqRNcGQ/APETITOL-BIOFARMA.jpg"},
+  {id:"bio_complex",n:"Bio-Complex B Biofarma 100 ml",d:"Suplemento Vitaminico Oral",c:"vitaminas",sc:"energia",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/tpHJ6PZK/BIO-COMPLEX-B-BIOFARMA.jpg"},
+  {id:"complejo_b",n:"Complejo B Potenciado Ifavet 100 ml",d:"Jarabe Multivitaminico Antineuritico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/TDZ0Jtqc/COMPLEJO-B-POTENCIADO-IFAVET-02.jpg"},
+  {id:"complejo_b_e",n:"Complejo B electrolitos Biomont 10 g",d:"Sobre en polvo, energetico, vitaminico y mineral",c:"vitaminas",sc:"energia",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/HfrwSfKZ/COMPLEJO-B-ELECTROLITOS.jpg"},
+  {id:"mascota_tab",n:"Mascota tabletas",d:"Vitaminas y minerales",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/HL5mL9p8/MASCOTA-TABLETA-02.jpg"},
+  {id:"ferron_forte",n:"Ferron Forte-B12 100 ml",d:"Jarabe Vitaminado",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/0Vpdjrr7/FERRON-FORTE-B12-JARABE-MI-MASCOTA.jpg"},
+  {id:"vitacan_c",n:"Vitacan Compuesto Ifavet",d:"Tableta Suplemento Vitaminico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/9kvvBY6K/VITACAN-COMPUESTO-COMPRIMIDOS-IFAVET.jpg"},
+  {id:"vitacan_j",n:"Vitacan Jarabe Ifavet 100 ml",d:"Jarabe Suplemento Vitaminico",c:"vitaminas",sc:"energia",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/1JdbK4J6/VITACAN-JARABE-IFAVET.jpg"},
   // VITAMINAS - Defensas
-  {id:"ferrocan_c",n:"Ferrocan Compuesto Ifavet",d:"Tabletas de Suplemento Antianemico",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/rGWddYqC/FERROCAN-COMPUESTO-COMPRIMIDOS-IFAVET.png"},
-  {id:"ferrocan_j",n:"Ferrocan Jarabe Ifavet",d:"Jarabe Antianemico",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/zHDZFx4m/FERROCAN-JARABE-IFAVET.png"},
-  {id:"inmunovida",n:"InmunoVida 20 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/ccMWRwnn/INMUNOVIDA.png"},
-  {id:"inmunovida_30",n:"InmunoVida 30 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/fYkFfpZc/Inmuno-Vida-30-ml-Sifarma.png"},
-  {id:"inmunovida_10",n:"InmunoVida 10 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/wN0P7C9C/Inmuno-Vida-10-ml-Sifarma.png"},
-  {id:"potenza",n:"Potenza Biomont",d:"Suplemento Oral Energetico Nutricional",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/tPFsqQn3/POTENZA-BIOMONT.png"},
+  {id:"ferrocan_c",n:"Ferrocan Compuesto Ifavet",d:"Tabletas de Suplemento Antianemico",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/0R3YkkW5/FERROCAN-COMPUESTO-COMPRIMIDOS-IFAVET.jpg"},
+  {id:"ferrocan_j",n:"Ferrocan Jarabe Ifavet 100 ml",d:"Jarabe Antianemico",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/qMbKH0PL/FERROCAN-JARABE-IFAVET.jpg"},
+  {id:"inmunovida",n:"InmunoVida 20 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/YBfsnkgM/INMUNOVIDA.jpg"},
+  {id:"inmunovida_30",n:"InmunoVida 30 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/ZRVhNNR6/Inmuno-Vida-30-ml-Sifarma.jpg"},
+  {id:"inmunovida_10",n:"InmunoVida 10 ml Sifarma",d:"Refuerza defensas del sistema inmune",c:"vitaminas",sc:"defensas",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/m51M66Tb/Inmuno-Vida-10-ml-Sifarma.jpg"},
+  {id:"potenza",n:"Potenza Biomont 120 g",d:"Suplemento Oral Energetico Nutricional",c:"vitaminas",sc:"defensas",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Df6S5WJW/POTENZA-BIOMONT.jpg"},
   // VITAMINAS - Pelo y Piel
-  {id:"nexomega",n:"NexOmega Ade 3,6,9",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/YFnWfqcF/NEXOMEGA-ADE.png"},
-  {id:"omega_pets",n:"Omega Pets Biofarma",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/csYmtFj/OMEGA-PETS-BIOFARMA.png"},
-  {id:"omegapel",n:"Omegapel Biomont",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/CKQJ9GbQ/OMEGAPEL-BIOMNOT.png"},
-  {id:"peluditos",n:"Peluditos Biofarma",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/C56dbnk4/PELUDITOS-BIOFARMA.png"},
-  {id:"tenacar",n:"Tenacar Omega 3,6,9 gato",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/0yrczq8y/TENACAR-OMEGA.png"},
-  // VITAMINAS - Calcio y Huesos
-  {id:"calci_vit",n:"Calci-Vit Saborizada Biofarma",d:"Suplemento Oral Mineral Vitaminado",c:"vitaminas",sc:"calcio",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/x8H6TBJD/CALCI-VIT-SABORIZADA-BIOFARMA.png"},
+  {id:"nexomega",n:"NexOmega Ade 3,6,9 120 ml",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/DF6Srgd/NEXOMEGA-ADE.jpg"},
+  {id:"omega_pets",n:"Omega Pets Biofarma 100 ml",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/3YdsPyPm/OMEGA-PETS-BIOFARMA.jpg"},
+  {id:"omegapel",n:"Omegapel Biomont 250 ml",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/7xDKDS9t/OMEGAPEL-BIOMNOT.jpg"},
+  {id:"peluditos",n:"Peluditos Biofarma 100 ml",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/pqmWkPR/PELUDITOS-BIOFARMA.jpg"},
+  {id:"tenacar",n:"Tenacar Omega 3,6,9 gato 120 ml",d:"Suplemento oral — Omega 3,6,9 mejora pelaje",c:"vitaminas",sc:"pelo",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/f6PwPLV/TENACAR-OMEGA.jpg"},
+  // VITAMINAS - Calcio
+  {id:"calci_vit",n:"Calci-Vit Saborizada Biofarma 100 ml",d:"Suplemento Oral Mineral Vitaminado",c:"vitaminas",sc:"calcio",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/fYVm7kBc/CALCI-VIT-SABORIZADA-BIOFARMA.jpg"},
 
-  // ==========================================
   // ANTIBIÓTICOS - Oral
-  // ==========================================
-  {id:"amoxicilina",n:"Amoxicilina 125 mg Ifavet",d:"Antibiotico Oral",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/zHbN60Nt/AMOXICILINA-IFAVET.png"},
-  {id:"bronquifarma",n:"Bronquifarma Biofarma",d:"Antibiotico Oral de Amplio Espectro",c:"antibiotico",sc:"oral",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/0RyXZCHG/BRONQUIFARMA-BIOFARMA.png"},
-  {id:"cefalexina",n:"Cefalexina 500 mg Ifavet",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/PzWgMgRm/CEFALEXINA-IFAVET.png"},
-  {id:"doxi_can",n:"Doxi-Can Biofarma",d:"Antibiotico de amplio espectro en Suspencion",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/HfMqFbwV/DOXI-CAN-BIOFARMA.png"},
-  {id:"enrofloxacina",n:"Enrofloxacina 10% Biofarma",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"oral",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/v4qYKBRt/ENROFLOXACINA-10-BIOFARMA.png"},
-  {id:"sultrin",n:"Sultrin Forte Ifavet",d:"Antibiotico en suspencion",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/2Y0tW5N2/SULTRIN-FORTE-IFAVET.png"},
-  {id:"super_pollito",n:"Super Pollito",d:"Antibiotico mas vitaminas",c:"antibiotico",sc:"oral",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/jkkcLWYm/SUPER-POLLITO.png"},
-  {id:"vetacef",n:"Vetacef 250 Ifavet",d:"Antibiotico de amplio espectro en suspension",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/8ZHM3Zv/VETACEF-250-IFAVET.png"},
+  {id:"amoxicilina",n:"Amoxicilina 125 mg Ifavet",d:"Antibiotico Oral",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/MqTjTBY/AMOXICILINA-IFAVET.jpg"},
+  {id:"amoxi_farma",n:"Amoxi-Farma Biofarma 60 ml",d:"Antibiotico oral de amplio espectro",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/20LG4932/AMOXI-FARMA-BIOFARMA-60-ml.jpg"},
+  {id:"bronquifarma",n:"Bronquifarma Biofarma 100 ml",d:"Antibiotico Oral de Amplio Espectro",c:"antibiotico",sc:"oral",a:["perro","gato","aves"],precio:"Consultar",img:"https://i.ibb.co/WNC5jxhn/BRONQUIFARMA-BIOFARMA.jpg"},
+  {id:"cefalexina",n:"Cefalexina 500 mg Ifavet",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/NdTR27M1/CEFALEXINA-IFAVET.jpg"},
+  {id:"doxi_can",n:"Doxi-Can Biofarma 100 ml",d:"Antibiotico de amplio espectro en Suspencion",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/CKB5204z/DOXI-CAN-BIOFARMA.jpg"},
+  {id:"enrofloxacina",n:"Enrofloxacina 10% Biofarma 15 ml",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"oral",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/qQkwWJG/ENROFLOXACINA-10-BIOFARMA.jpg"},
+  {id:"sultrin",n:"Sultrin Forte Ifavet 100 ml",d:"Antibiotico en suspencion",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/2w9RJVd/SULTRIN-FORTE-IFAVET.jpg"},
+  {id:"super_pollito",n:"Super Pollito",d:"Antibiotico mas vitaminas",c:"antibiotico",sc:"oral",a:["aves"],precio:"Consultar",img:"https://i.ibb.co/bRX5w1JG/SUPER-POLLITO.jpg"},
+  {id:"vetacef",n:"Vetacef 250 Ifavet 100 ml",d:"Antibiotico de amplio espectro en suspension",c:"antibiotico",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/84XvLKT8/VETACEF-250-IFAVET.jpg"},
   // ANTIBIÓTICOS - Inyectable
-  {id:"bovomicina",n:"Bovomicina Quimtia",d:"Antibiotico de Amplio Espectro",c:"antibiotico",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/BHtjq0MN/BOVOMICINA.png"},
-  {id:"broncovet",n:"Broncovet Inyectable Labeet",d:"Antibiotico Expectorante y Mucolitico",c:"antibiotico",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/PGs46Lmm/BRONCOVET-LABEET.png"},
-  {id:"enromic",n:"Enromic 10% Microsules",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"inyectable",a:["perro","rural"],precio:"Consultar",img:"https://i.ibb.co/1YzsDnfS/ENROMIC-10-MICROSULES.png"},
+  {id:"bovomicina",n:"Bovomicina Quimtia",d:"Antibiotico de Amplio Espectro",c:"antibiotico",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/PvvXZK8w/BOVOMICINA.jpg"},
+  {id:"broncovet",n:"Broncovet Inyectable Labeet 50 ml",d:"Antibiotico Expectorante y Mucolitico",c:"antibiotico",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/hxPLBqxL/BRONCOVET-LABEET.jpg"},
+  {id:"enromic",n:"Enromic 10% Microsules 100 ml",d:"Antibiotico de amplio espectro",c:"antibiotico",sc:"inyectable",a:["perro","rural"],precio:"Consultar",img:"https://i.ibb.co/Df4svYG4/ENROMIC-10-MICROSULES.jpg"},
 
-  // ==========================================
   // RESPIRATORIO - Oral
-  // ==========================================
-  {id:"ambroxol",n:"Ambroxol 30 mg Ifavet",d:"Expectorante Mucolítico Oral",c:"respiratorio",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/67rKdDXV/AMBROXOL-30-MG-IFAVET.png"},
-  {id:"bromhexina",n:"Bromhexina 4 mg Ifavet",d:"Jarabe Expectorante Mucolítico",c:"respiratorio",sc:"oral",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/tTCB145V/BROMHEXINA-IFAVET.png"},
-  {id:"brocovet",n:"Brocovet Gotas Labeet",d:"Mucolitico oral en gotas",c:"respiratorio",sc:"oral",a:["aves","rural"],precio:"Consultar",img:"https://i.ibb.co/nq4nPLCL/BRONCOVET-GOTAS.png"},
-  {id:"espectodan",n:"Espectodan",d:"Solucion oral, expectorante y descongestionante",c:"respiratorio",sc:"oral",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/mrDFV0MS/ESPECTODAN-DANIEL.png"},
-  {id:"neumoflogin",n:"Neumoflogin Triton",d:"Afecciones Respiratorias, Bronquitis y Neumonias",c:"respiratorio",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Y4sTVJ83/NEUMOFLOGIN.png"},
+  {id:"ambroxol",n:"Ambroxol 30 mg Ifavet",d:"Expectorante Mucolítico Oral",c:"respiratorio",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/JWKpVB2L/AMBROXOL-30-MG-IFAVET.jpg"},
+  {id:"bromhexina",n:"Bromhexina 4 mg Ifavet 100 ml",d:"Jarabe Expectorante Mucolítico",c:"respiratorio",sc:"oral",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/WWnx7dV6/BROMHEXINA-IFAVET.jpg"},
+  {id:"brocovet",n:"Brocovet Gotas Labeet 30 ml",d:"Mucolitico oral en gotas",c:"respiratorio",sc:"oral",a:["aves","rural"],precio:"Consultar",img:"https://i.ibb.co/x8L2m33B/BRONCOVET-GOTAS.jpg"},
+  {id:"espectodan",n:"Espectodan 100 ml",d:"Solucion oral, expectorante y descongestionante",c:"respiratorio",sc:"oral",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/tw4R5D5w/ESPECTODAN-DANIEL.jpg"},
+  {id:"neumoflogin",n:"Neumoflogin Triton",d:"Afecciones Respiratorias, Bronquitis y Neumonias",c:"respiratorio",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Kj18XRyK/NEUMOFLOGIN.jpg"},
 
-  // ==========================================
   // DIGESTIVO - Digestión
-  // ==========================================
-  {id:"domperidona",n:"Domperidona-Vet Ifavet",d:"Antiemetico y Antidispeptico",c:"digestivo",sc:"digestivo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/4hCmccg/DOMPERIDONA-VET-IFAVET.png"},
-  {id:"sulfadan",n:"Sulfadan",d:"Suspencion oral, para diarrea o infección intestinal",c:"digestivo",sc:"digestivo",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/TDD6y5WJ/SULFADAN-DANIEL.png"},
+  {id:"domperidona",n:"Domperidona-Vet Ifavet 20 ml",d:"Antiemetico y Antidispeptico",c:"digestivo",sc:"digestivo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/XkCYFZc3/DOMPERIDONA-VET-IFAVET.jpg"},
+  {id:"sulfadan",n:"Sulfadan 100 ml",d:"Suspencion oral, para diarrea o infección intestinal",c:"digestivo",sc:"digestivo",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/Fc6szhF/SULFADAN-DANIEL.jpg"},
   // DIGESTIVO - Hígado
-  {id:"protector_hepatico",n:"Protector Hepatico Biofarma",d:"Suspension oral, Hepatoprotector del higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/B5pYjXN2/PROTECTOR-HEPATICO.png"},
-  {id:"urso_comp",n:"UrsoMariana Comprimidos",d:"Protege y regenera el higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/PvRS50wb/URSO-MARINA-COMPRIMIDOS.png"},
-  {id:"urso_susp",n:"UrsoMariana Suspención",d:"Protege y regenera el higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/cckyyMmZ/URSO-MARINA.png"},
-  {id:"hepato",n:"Hepato Protector Over",d:"Protector hepatico Inyectable",c:"digestivo",sc:"higado",a:["perro","rural"],precio:"Consultar",img:"https://i.ibb.co/WNZJZYD0/HEPATO-PROTECTOR-OVER.png"},
+  {id:"protector_hepatico",n:"Protector Hepatico Biofarma 100 ml",d:"Suspension oral, Hepatoprotector del higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/CKV331G4/PROTECTOR-HEPATICO.jpg"},
+  {id:"urso_comp",n:"UrsoMariana Comprimidos",d:"Protege y regenera el higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/YBrnnwmr/URSO-MARINA-COMPRIMIDOS.jpg"},
+  {id:"urso_susp",n:"UrsoMariana Suspención 100 ml",d:"Protege y regenera el higado",c:"digestivo",sc:"higado",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/1JnJ7hTK/URSO-MARINA.jpg"},
+  {id:"hepato",n:"Hepato Protector Over 100 ml",d:"Protector hepatico Inyectable",c:"digestivo",sc:"higado",a:["perro","rural"],precio:"Consultar",img:"https://i.ibb.co/gZjPC2sy/HEPATO-PROTECTOR-OVER.jpg"},
 
-  // ==========================================
   // HONGOS - Tópico
-  // ==========================================
-  {id:"azufre_jabon",n:"Azufre Jabon Sanitario Biofarma",d:"Jabon Antisarnico y antimicotico",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/40DDydg/AZUFRE-JABON-BIOFARMA.png"},
-  {id:"derma_vet",n:"Dermo Vet Ifavet",d:"Tratamiento contra la Sarna",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/FbvfS6cH/DERMO-VET-IFAVET.png"},
-  {id:"hongo_derm",n:"Hongo Derm - Biofarma",d:"Locion Antimicotica de uso topico",c:"hongos",sc:"topico",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/XfPmKB6P/HONGO-DERM-BIOFARMA.png"},
-  {id:"hongo_vet",n:"Hongo-Vet Ifavet",d:"Locion Antimicotico",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/QvVpnbqL/HONGO-VET-IFAVET.png"},
-  {id:"sarnafin",n:"Sarnafin Amitraz Biofarma",d:"Jabor Sanitario Sarnicida",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/bj02DTHd/SARNAFIN-AMITRAZ-BIOFARMA.png"},
+  {id:"azufre_jabon",n:"Azufre Jabon Sanitario Biofarma",d:"Jabon Antisarnico y antimicotico",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Z6JvRcxm/AZUFRE-JABON-BIOFARMA.jpg"},
+  {id:"derma_vet",n:"Dermo Vet Ifavet 100 ml",d:"Tratamiento contra la Sarna",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/39k39wYN/DERMO-VET-IFAVET.jpg"},
+  {id:"hongo_derm",n:"Hongo Derm - Biofarma 60 ml",d:"Locion Antimicotica de uso topico",c:"hongos",sc:"topico",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/KjMWd1mS/HONGO-DERM-BIOFARMA.jpg"},
+  {id:"hongo_vet",n:"Hongo-Vet Ifavet 100 ml",d:"Locion Antimicotico",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/CKV3HHR9/HONGO-VET-IFAVET.jpg"},
+  {id:"sarnafin",n:"Sarnafin Amitraz Biofarma",d:"Jabor Sanitario Sarnicida",c:"hongos",sc:"topico",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/HfFzxD7X/SARNAFIN-AMITRAZ-BIOFARMA.jpg"},
   // HONGOS - Oral
-  {id:"ketoconazol",n:"Ketoconazol 200 mg Ifavet",d:"Combate infecciones por hongos",c:"hongos",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/9HcK4FFg/KETOCONAZOL-200-MG-IFAVET.png"},
+  {id:"ketoconazol",n:"Ketoconazol 200 mg Ifavet",d:"Combate infecciones por hongos",c:"hongos",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Y4LtS4v6/KETOCONAZOL-200-MG-IFAVET.jpg"},
 
-  // ==========================================
   // LECHE
-  // ==========================================
-  {id:"esbilac",n:"Esbilac",d:"Leche en polvo para cachorros",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/nspYg5FH/ESBILAC-LECHE-EN-POLVO.png"},
-  {id:"kmr",n:"KMR",d:"Remplazo de leche materna",c:"leche",sc:"",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/q3DXC66N/KMR-LECHE-EN-POLVO.png"},
-  {id:"maternil_fort",n:"Maternil Fort",d:"Leche en polvo para cachorros",c:"leche",sc:"",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gLCdSKwq/MATERNIL-FORT-LECHE-EN-POLVO.png"},
-  {id:"perrolac_500",n:"PerroLac 500 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/1tY0LFyt/PERROLAC-500-G.png"},
-  {id:"perrolac_250",n:"PerroLac 250 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/G4PzFkbY/PERROLAC-250-G.png"},
-  {id:"perrolac_100",n:"PerroLac 100 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/1J861WXx/PERROLAC-100-G.png"},
+  {id:"esbilac",n:"Esbilac 340 g",d:"Leche en polvo para cachorros",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/hJ034XTv/ESBILAC-LECHE-EN-POLVO.jpg"},
+  {id:"kmr",n:"KMR 170 g",d:"Remplazo de leche materna",c:"leche",sc:"",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/3yDV41hj/KMR-LECHE-EN-POLVO.jpg"},
+  {id:"maternil_fort",n:"Maternil Fort 250 g",d:"Leche en polvo para cachorros",c:"leche",sc:"",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/wN2Yw57Z/MATERNIL-FORT-LECHE-EN-POLVO.jpg"},
+  {id:"perrolac_500",n:"PerroLac 500 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/zVpx9Cyd/PERROLAC-500-G.jpg"},
+  {id:"perrolac_250",n:"PerroLac 250 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/LXfG02dV/PERROLAC-250-G.jpg"},
+  {id:"perrolac_100",n:"PerroLac 100 gr",d:"Sustituto lácteo en polvo",c:"leche",sc:"",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/pv2jjskm/PERROLAC-100-G.jpg"},
 
-  // ==========================================
   // ALIMENTOS
-  // ==========================================
-  {id:"mikdog",n:"Mikdog",d:"Comida enlatada para cachorros",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/vxBWT5xT/MIKDOG-COMIDA-ENLATADA.png"},
-  {id:"pri_can",n:"Pri & Can",d:"Comida enlatada sabor cordero",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/jPYn1S3F/PRI-CAN-COMIDA-ENLATADA.png"},
-  {id:"rey_dog",n:"Rey Dog",d:"Comida enlatada sabor pavo y pollo",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/20mT254X/REY-DOG-COMIDA-ENLATADA.png"},
-  {id:"mikcat_premium",n:"MikCat Premium",d:"Comida enlatada para Gatos Adultos",c:"alimentos",sc:"humedos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/Z1LZ3Ydj/MIKCAT-PREMIUM.png"},
+  {id:"mikdog",n:"Mikdog Premium 290 g",d:"Nutrición completa para cachorros",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/PGpTRnG9/MIKDOG-COMIDA-ENLATADA.jpg"},
+  {id:"pri_can",n:"Pri&Can Adulto 330 g",d:"Nutrición completa, sabor cordero",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/LDZWYqF1/PRI-CAN-COMIDA-ENLATADA.jpg"},
+  {id:"rey_dog",n:"Rey Dog 330 g",d:"Nutrición completa, sabor pavo y pollo",c:"alimentos",sc:"humedos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/svrVc90h/REY-DOG-COMIDA-ENLATADA.jpg"},
+  {id:"mikcat_premium",n:"MikCat Premium 290 g",d:"Nutrición completa y deliciosa",c:"alimentos",sc:"humedos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/hFgW5N6k/MIKCAT-PREMIUM.jpg"},
+  // ALIMENTOS - Secos Perro
+  {id:"royal_canin_hepatic",n:"Royal Canin Hepatic 10 kg",d:"Promueve la regeneración del tejido hepático",c:"alimentos",sc:"medicados",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/67grKWS2/ROYAL-CANIN-HEPATIC-10-kg.jpg"},
+  {id:"podium_cachorros",n:"Podium Cachorros - Raza Pequeña 23 kg",d:"Nutrición completa para tu cachorro",c:"alimentos",sc:"cachorros",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/xqtDzp0W/PODIUM-CACHORROS-RAZA-PEQUE-A-23-KG.jpg"},
+  {id:"frost_adult",n:"Frost Adult Mini & Small 15 kg",d:"Nutrición completa para perros de raza pequeña",c:"alimentos",sc:"adultos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/zh5S53X3/FROST-ADULT-MINI-SMALL-15-kg.jpg"},
+  {id:"frost_puppy",n:"Frost Puppy Mini & Small 15 kg",d:"Nutrición completa para un crecimiento saludable",c:"alimentos",sc:"cachorros",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/nqnQwpBG/FROST-PUPPY-MINI-SMALL-15-KG.jpg"},
+  {id:"bravo_light",n:"Bravo Frango & Legumes Light 15 kg",d:"Con calorías reducidas para mantener un peso saludable",c:"alimentos",sc:"adultos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/rRxw6BJC/BRAVO-FRANGO-LIGHT-LEGUMES-15-KG.jpg"},
+  {id:"primocao",n:"Primocao Filhotes 20 kg",d:"Crecimiento saludable y equilibrado",c:"alimentos",sc:"cachorros",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/RGS14jyQ/PRIMOCAO-FILHOTES-20-KG.jpg"},
+  {id:"premier",n:"Premier Ambientes Internos 12 kg",d:"Rico en vitaminas y minerales para el funcionamiento del cuerpo",c:"alimentos",sc:"adultos",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/8nTCwFtd/PREMIER-AMBIENTES-INTERNOS-12-KG.jpg"},
+  {id:"cibau",n:"Cibau Puppy Mini Breeds 10 kg",d:"Nutrientes y proteínas para un óptimo desarrollo muscular y óseo",c:"alimentos",sc:"cachorros",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/Dgsg99X4/CIBAU-PUPPY-MINI-BREEDS-10-KG.jpg"},
+  // ALIMENTOS - Secos Gato
+  {id:"matisse",n:"Matisse Castrados Salmao 15 kg",d:"Alimento completo y balanceado",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/hRxhRXhv/MATISSE-CASTRADO-SALMAO-15-KG.jpg"},
+  {id:"podium_cat_gatitos",n:"Podium Cat Gatitos",d:"Nutrición optima y balenceada",c:"alimentos",sc:"gatitos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/L4QV1QX/PODIUM-CAT-GATITOS-10-kg.jpg"},
+  {id:"podium_cat_castrados",n:"Podium Cat Castrados",d:"Evita el aumento de peso típico en gatos esterilizados",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/DDW85KYw/PODIUM-CAT-CASTRADOS-10-KG.jpg"},
+  {id:"monello_salmon",n:"Monello Salmon y Pollo 15 kg",d:"Promueve la salud dental, urinaria y el brillo del pelaje",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/MY5GCV6/MONELLO-SALMAO-E-FRANGO-15-KG.jpg"},
+  {id:"golden_castrados",n:"Golden Gatos Castrados 10,1 kg",d:"Control del aumento de peso, salud del tracto urinario",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/8D1Cvcgx/GOLDEN-GATOS-CASTRADOS-10-1-KG.jpg"},
+  {id:"golden_gatitos",n:"Golden Gatitos Frango 10,1 kg",d:"Crecimiento saludable, salud del tracto urinario",c:"alimentos",sc:"gatitos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/20f5BVbd/GOLDEN-GATITOS-FRANGO-10-1-KG.jpg"},
+  {id:"monello_castrados",n:"Monello Gatos Castrados 10,1 kg",d:"Control del aumento de peso, salud del tracto urinario",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/sdm5r3Nc/MONELLO-GATOS-CASTRADOS-10-1-KG.jpg"},
+  {id:"leroy_castrados",n:"LeRoy Adultos Castrados 15 kg",d:"Salud tracto urinario + proteina bruta",c:"alimentos",sc:"adultos",a:["gato"],precio:"Consultar",img:"https://i.ibb.co/V01XmckM/LE-ROY-ADULTOS-CASTRADOS-15-KG.jpg"},
 
-  // ==========================================
   // TRATAMIENTO - Oral
-  // ==========================================
-  {id:"celomic",n:"Celomic Micropets",d:"Supresor de celo en tabletas",c:"tratamiento",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/CTY3XCV/CELOMIC-TABLETAS-MICROPETS.png"},
-  {id:"meloxicam",n:"Meloxicam 7,5 mg Ifavet",d:"Antiflamatorio",c:"tratamiento",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/1JtJJ8Tp/MELOXICAN-IFAVET.png"},
+  {id:"celomic",n:"Celomic Micropets",d:"Supresor de celo en tabletas",c:"tratamiento",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/9m3Qptgw/CELOMIC-TABLETAS-MICROPETS.jpg"},
+  {id:"meloxicam",n:"Meloxicam 7,5 mg Ifavet",d:"Antiflamatorio",c:"tratamiento",sc:"oral",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Fkz2zfDk/MELOXICAN-IFAVET.jpg"},
   // TRATAMIENTO - Inyectable
-  {id:"ifametasona",n:"Ifametasona Ifavet",d:"Antiflamatorio y Antialergico",c:"tratamiento",sc:"inyectable",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/fzBbh7Zb/IFAMETASONA-IFAVET.png"},
-  {id:"meloxisan",n:"Meloxisan Pets Montana",d:"Antiflamatorio",c:"tratamiento",sc:"inyectable",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/ccK39NMd/MELOXISAN-PETS.png"},
-  {id:"mercepton",n:"Mercepton Bravet",d:"Antitoxico",c:"tratamiento",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/0jvBwXkW/MERCEPTON.png"},
+  {id:"ifametasona",n:"Ifametasona Ifavet 50 ml",d:"Antiflamatorio y Antialergico",c:"tratamiento",sc:"inyectable",a:["perro","gato","rural"],precio:"Consultar",img:"https://i.ibb.co/GvsSqTxq/IFAMETASONA-IFAVET.jpg"},
+  {id:"meloxisan",n:"Meloxisan Pets Montana 50 ml",d:"Antiflamatorio",c:"tratamiento",sc:"inyectable",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/V0vt6dTq/MELOXISAN-PETS.jpg"},
+  {id:"mercepton",n:"Mercepton Bravet 100 ml",d:"Antitoxico",c:"tratamiento",sc:"inyectable",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/zh01h6Z5/MERCEPTON.jpg"},
 
-  // ==========================================
   // RATICIDAS
-  // ==========================================
-  {id:"killer",n:"Killer Campeón",d:"Cebo Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/DDPmThWq/KILLER-CAMPEON.png"},
-  {id:"killer_sobre",n:"Killer Campeón Sobre",d:"Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/2YpGzr3Q/KILLER-CAMPEON-SOBRE.png"},
-  {id:"ultra_plus",n:"Ultra Plus",d:"Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/XrFZcmKV/ULTRA-PLUS.png"},
-  {id:"ratifin",n:"Ratifin",d:"Rodenticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/x8zQGYpL/RATIFIN-RODENTICIDA.png"},
-  {id:"killrat",n:"Killrat",d:"Rodenticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/hRWhJN1c/KILLRAT.png"},
-  {id:"mapex_rat",n:"Mapex Rat",d:"Cebo Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/ymhnvTX9/MAPEX-RAT.png"},
-  {id:"klerat",n:"Klerat",d:"Raticida cebo granulado",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/NdTC6Fgt/KLERAT.png"},
+  {id:"killer",n:"Killer Campeón 40 g",d:"Cebo Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/d45Wy0NV/KILLER-CAMPEON.jpg"},
+  {id:"killer_sobre",n:"Killer Campeón Sobre 5 g",d:"Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/JjVkzntZ/KILLER-CAMPEON-SOBRE.jpg"},
+  {id:"ultra_plus",n:"Ultra Plus 50 g",d:"Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/YBXg2p76/ULTRA-PLUS.jpg"},
+  {id:"ratifin",n:"Ratifin 25 g",d:"Rodenticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/Kzq88CSK/RATIFIN-RODENTICIDA.jpg"},
+  {id:"killrat",n:"Killrat 100 g",d:"Rodenticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/HLWTyskX/KILLRAT.jpg"},
+  {id:"mapex_rat",n:"Mapex Rat 40 g",d:"Cebo Raticida",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/LdnWmS0Q/MAPEX-RAT.jpg"},
+  {id:"klerat",n:"Klerat 25 g",d:"Raticida cebo granulado",c:"raticidas",sc:"raticidas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/4nFCJVqX/KLERAT.jpg"},
 
-  // ==========================================
   // INSECTICIDAS
-  // ==========================================
-  {id:"baraticida_gel",n:"Baraticida Gel",d:"Insecticida de Cucarachas",c:"insecticidas",sc:"cucarachas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/zhzgFDBz/BARATICIDA-GEL.png"},
-  {id:"mapex_hormigas",n:"Mapex Elimina Hormigas 120 gr",d:"Insecticida de todo tipo de hormigas",c:"insecticidas",sc:"hormigas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/fV3mX1WG/MAPEX-ELIMINA-HORMIGA-120-G.png"},
+  {id:"baraticida_gel",n:"Baraticida Gel",d:"Insecticida de Cucarachas",c:"insecticidas",sc:"cucarachas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/3VHQ5Bp/BARATICIDA-GEL.jpg"},
+  {id:"mapex_hormigas",n:"Mapex Elimina Hormigas 120 gr",d:"Insecticida de todo tipo de hormigas",c:"insecticidas",sc:"hormigas",a:["rural"],precio:"Consultar",img:"https://i.ibb.co/N61y6mcY/MAPEX-ELIMINA-HORMIGA-120-G.jpg"},
 
-  // ==========================================
   // HIGIENE - Shampoo (Perro)
-  // ==========================================
-  {id:"shampoo_knino_duo",n:"Shampoo K-nino Duo 150 ml",d:"Elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/0jRX2m4f/SHAMPOO-K-NINO-DUO.png"},
-  {id:"shampoo_sarnol",n:"Shampoo Sarnol Ifavet 250 ml",d:"Combate la sarna, controla pulgas, piojos y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/4CJ9bhW/SHAMPOO-SARNOL-IFAVET-250-ml.png"},
-  {id:"sarnafin_shampoo",n:"Sarnafin Shampoo Biofarma 500 ml",d:"Combate la Sarna, elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/3m1RkJnr/SARNAFIN-SHAMPOO-BIOFARMA.png"},
-  {id:"shampoo_pulguicida_shapadog_210",n:"Shampoo Pulguicida Shapadog 210 ml",d:"Elimina garrapatas, pulgas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/6c9C4y4b/SHAMPOO-PULGUICIDA-SHAPADOG-210-ml.png"},
-  {id:"shampoo_pulguicida_shapadog_450",n:"Shampoo Pulguicida Shapadog 450 ml",d:"Elimina garrapatas, pulgas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/PvdG3JhR/SHAMPOO-PULGUICIDA-SHAPADOG-450-ml.png"},
+  {id:"shampoo_knino_duo",n:"Shampoo K-nino Duo 150 ml",d:"Elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/TxqF04z1/SHAMPOO-K-NINO-DUO.jpg"},
+  {id:"shampoo_sarnol",n:"Shampoo Sarnol Ifavet 250 ml",d:"Combate la sarna, controla pulgas, piojos y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/2Y5nH4cz/SHAMPOO-SARNOL-IFAVET-250-ml.jpg"},
+  {id:"sarnafin_shampoo",n:"Sarnafin Shampoo Biofarma 500 ml",d:"Combate la Sarna, elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/qY55rHYF/SARNAFIN-SHAMPOO-BIOFARMA.jpg"},
+  {id:"shampoo_pulguicida_shapadog_210",n:"Shampoo Pulguicida Shapadog 210 ml",d:"Elimina garrapatas, pulgas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/23JJHNNr/SHAMPOO-PULGUICIDA-SHAPADOG-210-ml.jpg"},
+  {id:"shampoo_pulguicida_shapadog_450",n:"Shampoo Pulguicida Shapadog 450 ml",d:"Elimina garrapatas, pulgas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro"],precio:"Consultar",img:"https://i.ibb.co/TxnyPwWC/SHAMPOO-PULGUICIDA-SHAPADOG-450-ml.jpg"},
   // HIGIENE - Shampoo (Perro y Gato)
-  {id:"shampoo_manzanilla_biofarma",n:"Shampoo Manzanilla Biofarma 500 ml",d:"Pelaje limpio suave y brillante",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Xx8LZybG/SHAMPOO-MANZANILLA-BIOFARMA.png"},
-  {id:"shampoo_antisarnico_guau",n:"Shampoo Antisarnico Guau 500 ml",d:"Combate la Sarna, elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/svLpSLm1/SHAMPOO-ANTISARNICO-GUAU.png"},
-  {id:"shampoo_antipulgas_guau",n:"Shampoo Antipulgas Guau 500 ml",d:"Elimina pulgas, garrapatas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Y74kSFHp/SHAMPOO-ANTIPULGAS-GUAU.png"},
-  {id:"shampoo_keto_far",n:"Champu Keto-Far Ketoconazol 1% 300 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gFMXcLD9/SHAMPOO-KETO-FAR-KETOCONAZOL-1.png"},
-  {id:"shampoo_animal",n:"Shampoo A-nimal Ifavet 250 ml",d:"Elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/LLvKxdk/SHAMPO-A-NIMAL-IFAVET-250-ml.png"},
-  {id:"shampoo_blanqueador_shapadog",n:"Shampoo Blanqueador Shapadog 600 ml",d:"Pelaje mas blanco, limpieza profunda",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/7FJp1x5/SHAMPOO-BLANQUEADOR-SHAPADOG.png"},
-  {id:"acondicionador_shapadog",n:"Acondicionador Shapadog 600 ml",d:"Pelaje suave, brillante y saludable",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/Vs2H1sD/ACONDICIONADOR-SHAPADOG-600-ml.png"},
-  {id:"shampoo_antifungico_shapadog_210",n:"Shampoo Antifúngico Shapadog 210 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/qYJTfvhS/SHAMPOO-ANTIFUNGICO-SHAPADOG.png"},
-  {id:"shampoo_antifungico_shapadog_450",n:"Shampoo Antifungico Shapadog 450 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/b5KMRcqB/SHAMPOO-ANTIFUNGICO-SHAPADOG-450-ml.png"},
-  {id:"shampoo_antisarnico_shapadog_210",n:"Shampoo Antisarnico Shapadog 210 ml",d:"Combate la sarna, pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/hJvsDzXg/SHAMPOO-ANTISARNICO-SHAPADOG-210-ml.png"},
-  {id:"shampoo_antisarnico_shapadog_450",n:"Shampoo Antisarnico Shapadog 450 ml",d:"Combate la sarna, pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/whfwBvMX/SHAMPOO-ANTISARNICO-SHAPADOG-450-ml.png"},
-  {id:"shampoo_antialergico_shapadog_450",n:"Shampoo Antialergico Shapadog 450 ml",d:"Alivia, limpia y protege la piel",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/JwMK41tY/SHAMPOO-ANTIALERGICO-SHAPADOG-450-ml.png"},
+  {id:"shampoo_manzanilla_biofarma",n:"Shampoo Manzanilla Biofarma 500 ml",d:"Pelaje limpio suave y brillante",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gL6G0QFN/SHAMPOO-MANZANILLA-BIOFARMA.jpg"},
+  {id:"shampoo_antisarnico_guau",n:"Shampoo Antisarnico Guau 500 ml",d:"Combate la Sarna, elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/YBk2BB7q/SHAMPOO-ANTISARNICO-GUAU.jpg"},
+  {id:"shampoo_antipulgas_guau",n:"Shampoo Antipulgas Guau 500 ml",d:"Elimina pulgas, garrapatas, piojos y acaros",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/V0WJrC06/SHAMPOO-ANTIPULGAS-GUAU.jpg"},
+  {id:"shampoo_keto_far",n:"Champu Keto-Far Ketoconazol 1% 300 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/DPMMzd4z/SHAMPOO-KETO-FAR-KETOCONAZOL-1.jpg"},
+  {id:"shampoo_animal",n:"Shampoo A-nimal Ifavet 250 ml",d:"Elimina pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/W4YTfwVF/SHAMPO-A-NIMAL-IFAVET-250-ml.jpg"},
+  {id:"shampoo_blanqueador_shapadog",n:"Shampoo Blanqueador Shapadog 600 ml",d:"Pelaje mas blanco, limpieza profunda",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/dsqgH7dM/SHAMPOO-BLANQUEADOR-SHAPADOG.jpg"},
+  {id:"acondicionador_shapadog",n:"Acondicionador Shapadog 600 ml",d:"Pelaje suave, brillante y saludable",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/tTCJRFZ9/ACONDICIONADOR-SHAPADOG-600-ml.jpg"},
+  {id:"shampoo_antifungico_shapadog_210",n:"Shampoo Antifúngico Shapadog 210 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/x9pqMQw/SHAMPOO-ANTIFUNGICO-SHAPADOG.jpg"},
+  {id:"shampoo_antifungico_shapadog_450",n:"Shampoo Antifungico Shapadog 450 ml",d:"Combate hongos e irritación cutánea",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/5Wgq1X4z/SHAMPOO-ANTISARNICO-SHAPADOG-450-ml.jpg"},
+  {id:"shampoo_antisarnico_shapadog_210",n:"Shampoo Antisarnico Shapadog 210 ml",d:"Combate la sarna, pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/ccMGwCxJ/SHAMPOO-ANTISARNICO-SHAPADOG-210-ml.jpg"},
+  {id:"shampoo_antisarnico_shapadog_450",n:"Shampoo Antisarnico Shapadog 450 ml",d:"Combate la sarna, pulgas y garrapatas",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/5Wgq1X4z/SHAMPOO-ANTISARNICO-SHAPADOG-450-ml.jpg"},
+  {id:"shampoo_antialergico_shapadog_450",n:"Shampoo Antialergico Shapadog 450 ml",d:"Alivia, limpia y protege la piel",c:"shampoo",sc:"shampoo",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/B2t7pPBj/SHAMPOO-ANTIALERGICO-SHAPADOG-450-ml.jpg"},
   // HIGIENE - Perfumes
-  {id:"perfume_shapadog",n:"Perfume Shapadog",d:"Perfume a base de aceites hidratantes",c:"shampoo",sc:"perfumes",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/1tV5FsMv/PERFUME-SHAPADOG.png"},
+  {id:"perfume_shapadog",n:"Perfume Shapadog",d:"Perfume a base de aceites hidratantes",c:"shampoo",sc:"perfumes",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/C3RsRHzf/PERFUME-SHAPADOG.jpg"},
+  {id:"odour_stop",n:"Odour Stop 500 ml",d:"Desodorante para mascotas en spray",c:"shampoo",sc:"perfumes",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/VWM3MpCd/ODOUR-STOP-500-ML.jpg"},
   // HIGIENE - Talcos
-  {id:"kil_pg_talco",n:"Kil PG Talco",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/gMj7RJmx/KIL-PG-TALCO.png"},
-  {id:"talco_sanitario",n:"Talco Sanitario Biofarma",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/GfgJ2cVc/TALCO-SANITARIO-BIOFARMA.png"},
-  {id:"pulk_talco",n:"Pul-k Talco Ifavet 70 gr",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/fYV0hRjD/PUL-K-TALCO-IFAVET-70-G.png"}
+  {id:"kil_pg_talco",n:"Kil PG Talco 100 G",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/xS2mCLqK/KIL-PG-TALCO.jpg"},
+  {id:"talco_sanitario",n:"Talco Sanitario Biofarma 150 G",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/RtYhhs4/TALCO-SANITARIO-BIOFARMA.jpg"},
+  {id:"pulk_talco",n:"Pul-k Talco Ifavet 70 g",d:"Talco Antipulgas y Garrapatas",c:"shampoo",sc:"talcos",a:["perro","gato"],precio:"Consultar",img:"https://i.ibb.co/QjQf5g5L/PUL-K-TALCO-IFAVET-70-G.jpg"}
 ];
 
 var DEST = ['nexgard_2_4','simparica_5_10','total_full_perros','omega_pets','shampoo_manzanilla_biofarma','inmunovida'];
